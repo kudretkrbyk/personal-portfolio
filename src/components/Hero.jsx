@@ -5,23 +5,17 @@ const Hero = () => {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              Merhaba, Ben{' '}
+              Merhaba, Ben{" "}
               <span className="heading-gradient">Kudret Kırbıyık</span>
             </h1>
             <p className="text-xl md:text-2xl text-body-color mb-8">
               Full Stack Developer
             </p>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <a
-                href="#portfolio"
-                className="btn-primary"
-              >
+              <a href="#portfolio" className="btn-primary">
                 Portfolyo
               </a>
-              <a
-                href="#contact"
-                className="btn-outline"
-              >
+              <a href="#contact" className="btn-primary">
                 İletişime Geç
               </a>
             </div>
