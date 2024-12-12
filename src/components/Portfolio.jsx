@@ -1,5 +1,5 @@
-import { useState, memo } from 'react';
-import LazyImage from './LazyImage';
+import { useState, memo } from "react";
+import LazyImage from "./LazyImage";
 
 const ProjectCard = memo(({ project }) => (
   <div className="card group overflow-hidden">
@@ -19,9 +19,7 @@ const ProjectCard = memo(({ project }) => (
       </div>
     </div>
     <div className="pt-4">
-      <h3 className="text-xl font-bold text-white mb-2">
-        {project.title}
-      </h3>
+      <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
       <p className="text-body-color">{project.category}</p>
     </div>
   </div>
@@ -33,8 +31,8 @@ const FilterButton = memo(({ filter, activeFilter, onClick }) => (
     className={`px-6 py-2 rounded-full border border-border-color transition-all duration-300
       ${
         activeFilter === filter
-          ? 'bg-primary text-white'
-          : 'text-body-color hover:text-white'
+          ? "bg-primary text-white"
+          : "text-body-color hover:text-white"
       }`}
   >
     {filter}
@@ -42,55 +40,56 @@ const FilterButton = memo(({ filter, activeFilter, onClick }) => (
 ));
 
 const Portfolio = () => {
-  const [activeFilter, setActiveFilter] = useState('Tümü');
+  const [activeFilter, setActiveFilter] = useState("Tümü");
 
-  const filters = ['Tümü', 'Web', 'Mobil', 'UI/UX'];
+  const filters = ["Tümü", "Web", "Mobil", "UI/UX"];
 
   const projects = [
     {
-      title: 'E-Ticaret Platformu',
-      category: 'Web',
-      image: '/portfolio/project1.jpg',
-      link: '#',
+      title: "E-Ticaret Platformu",
+      category: "Web",
+      image: "/portfolio/project1.jpg",
+      link: "#",
     },
     {
-      title: 'Mobil Uygulama',
-      category: 'Mobil',
-      image: '/portfolio/project2.jpg',
-      link: '#',
+      title: "Mobil Uygulama",
+      category: "Mobil",
+      image: "/portfolio/project2.jpg",
+      link: "#",
     },
     {
-      title: 'UI/UX Tasarım',
-      category: 'UI/UX',
-      image: '/portfolio/project3.jpg',
-      link: '#',
+      title: "UI/UX Tasarım",
+      category: "UI/UX",
+      image: "/portfolio/project3.jpg",
+      link: "#",
     },
     {
-      title: 'Blog Platformu',
-      category: 'Web',
-      image: '/portfolio/project4.jpg',
-      link: '#',
+      title: "Blog Platformu",
+      category: "Web",
+      image: "/portfolio/project4.jpg",
+      link: "#",
     },
     {
-      title: 'Kurumsal Website',
-      category: 'Web',
-      image: '/portfolio/project5.jpg',
-      link: '#',
+      title: "Kurumsal Website",
+      category: "Web",
+      image: "/portfolio/project5.jpg",
+      link: "#",
     },
     {
-      title: 'Mobil Oyun',
-      category: 'Mobil',
-      image: '/portfolio/project6.jpg',
-      link: '#',
+      title: "Mobil Oyun",
+      category: "Mobil",
+      image: "/portfolio/project6.jpg",
+      link: "#",
     },
   ];
 
-  const filteredProjects = activeFilter === 'Tümü'
-    ? projects
-    : projects.filter(project => project.category === activeFilter);
+  const filteredProjects =
+    activeFilter === "Tümü"
+      ? projects
+      : projects.filter((project) => project.category === activeFilter);
 
   return (
-    <section id="portfolio" className="section bg-dark">
+    <section id="portfolio" className=" bg-dark py-20">
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
