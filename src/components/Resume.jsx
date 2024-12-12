@@ -30,7 +30,7 @@ const SkillBar = ({ skill }) => {
 
   return (
     <div className="card" ref={skillRef}>
-      <div className="flex justify-between mb-2">
+      <div className="flex justify-between p-2">
         <span className="text-white font-medium">{skill.name}</span>
         <span className="text-primary">{width}%</span>
       </div>
@@ -95,70 +95,52 @@ const Resume = () => {
   ];
 
   return (
-    <section id="resume" className="section bg-dark w-full">
-      <div className="w-full flex flex-col items-center justify-center gap-1">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    <section id="resume" className="section bg-dark">
+      <div className="container">
+        <div className="flex flex-col items-center pb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white pb-4">
             Deneyim ve <span className="heading-gradient">Eğitim</span>
           </h2>
-          <p className="text-body-color max-w-2xl mx-auto">
+          <p className="text-body-color max-w-2xl text-center">
             Profesyonel deneyimlerim ve eğitim geçmişim
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10 ">
-          {/* Experience */}
-          <div className="flex flex-col items-start justify-start gap-5">
-            <h3 className="text-2xl font-bold text-white ">İş Deneyimi</h3>
-            <div className="flex flex-col items-center justify-center gap-5">
-              {experiences.map((exp, index) => (
-                <div
-                  key={index}
-                  className="card group w-full h-48 flex flex-col items-start justify-center gap-2"
-                >
-                  <span className="text-primary text-sm font-medium  block">
-                    {exp.period}
-                  </span>
-                  <h4 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                    {exp.title}
-                  </h4>
-                  <h5 className="text-lg text-body-color mb-3">
-                    {exp.company}
-                  </h5>
-                  <p className="text-body-color">{exp.description}</p>
-                </div>
-              ))}
-            </div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* İş Deneyimi */}
+          <div className="flex flex-col space-y-6">
+            <h3 className="text-2xl font-bold text-white pb-4">İş Deneyimi</h3>
+            {experiences.map((exp, index) => (
+              <div key={index} className="card p-6 flex flex-col space-y-4">
+                <span className="text-primary text-sm font-medium">
+                  {exp.period}
+                </span>
+                <h4 className="text-xl font-bold text-white">{exp.title}</h4>
+                <p className="text-primary">{exp.company}</p>
+                <p className="text-body-color">{exp.description}</p>
+              </div>
+            ))}
           </div>
 
-          {/* Education */}
-          <div className="flex flex-col items-start justify-start gap-5">
-            <h3 className="text-2xl font-bold text-white ">Eğitim</h3>
-            <div className="flex flex-col items-start justify-start gap-5">
-              {education.map((edu, index) => (
-                <div
-                  key={index}
-                  className="card group w-full h-48 flex flex-col items-start justify-center gap-2"
-                >
-                  <span className="text-primary text-sm font-medium  block">
-                    {edu.period}
-                  </span>
-                  <h4 className="text-xl font-bold text-white  group-hover:text-primary transition-colors">
-                    {edu.degree}
-                  </h4>
-                  <h5 className="text-lg text-body-color mb-3">{edu.school}</h5>
-                  <p className="text-body-color">{edu.description}</p>
-                </div>
-              ))}
-            </div>
+          {/* Eğitim */}
+          <div className="flex flex-col space-y-6">
+            <h3 className="text-2xl font-bold text-white pb-4">Eğitim</h3>
+            {education.map((edu, index) => (
+              <div key={index} className="card p-6 flex flex-col space-y-4">
+                <span className="text-primary text-sm font-medium">
+                  {edu.period}
+                </span>
+                <h4 className="text-xl font-bold text-white">{edu.degree}</h4>
+                <p className="text-primary">{edu.school}</p>
+                <p className="text-body-color">{edu.description}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Skills */}
-        <div className="w-full p-20 flex flex-col gap-10">
-          <h3 className="text-2xl font-bold text-white  text-center">
-            Yetenekler
-          </h3>
+        {/* Yetenekler */}
+        <div className="pt-12">
+          <h3 className="text-2xl font-bold text-white pb-8 text-center">Yetenekler</h3>
           <div className="grid md:grid-cols-2 gap-6">
             {skills.map((skill, index) => (
               <SkillBar key={index} skill={skill} />

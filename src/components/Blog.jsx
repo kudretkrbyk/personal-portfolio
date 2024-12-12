@@ -23,33 +23,33 @@ const Blog = () => {
   return (
     <section id="blog" className="section bg-dark">
       <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div className="flex flex-col items-center pb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white pb-4">
             Son <span className="heading-gradient">Blog</span> Yazılarım
           </h2>
-          <p className="text-body-color max-w-2xl mx-auto">
+          <p className="text-body-color max-w-2xl text-center">
             Teknoloji ve yazılım dünyasındaki deneyimlerimi ve öğrendiklerimi paylaştığım blog yazılarım
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
-            <article key={index} className="card group">
-              <div className="relative overflow-hidden rounded-xl mb-4">
+            <article key={index} className="card flex flex-col">
+              <div className="relative overflow-hidden rounded-xl">
                 <img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <div className="p-4">
-                <span className="text-primary text-sm font-medium mb-2 block">
+              <div className="p-6 flex flex-col space-y-2">
+                <span className="text-primary text-sm font-medium">
                   {post.date}
                 </span>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-body-color mb-4">
+                <p className="text-body-color">
                   {post.description}
                 </p>
                 <a
