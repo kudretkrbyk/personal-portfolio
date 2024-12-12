@@ -112,7 +112,10 @@ const Resume = () => {
             <h3 className="text-2xl font-bold text-white ">İş Deneyimi</h3>
             <div className="flex flex-col items-center justify-center gap-5">
               {experiences.map((exp, index) => (
-                <div key={index} className="card group w-full h-48">
+                <div
+                  key={index}
+                  className="card group w-full h-48 flex flex-col items-start justify-center gap-2"
+                >
                   <span className="text-primary text-sm font-medium  block">
                     {exp.period}
                   </span>
@@ -133,7 +136,10 @@ const Resume = () => {
             <h3 className="text-2xl font-bold text-white ">Eğitim</h3>
             <div className="flex flex-col items-start justify-start gap-5">
               {education.map((edu, index) => (
-                <div key={index} className="card group w-full h-48">
+                <div
+                  key={index}
+                  className="card group w-full h-48 flex flex-col items-start justify-center gap-2"
+                >
                   <span className="text-primary text-sm font-medium  block">
                     {edu.period}
                   </span>
