@@ -1,50 +1,54 @@
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa6";
+
 const experiences = [
   {
-    title: "Full Stack Developer",
-    company: "Tech Company",
-    period: "2022 - Şimdi",
-    description:
-      "Modern web teknolojileri kullanarak kapsamlı web uygulamaları geliştirme.",
-  },
-  {
-    title: "Frontend Developer",
-    company: "Digital Agency",
-    period: "2020 - 2022",
-    description:
-      "Kullanıcı arayüzü geliştirme ve responsive tasarım uygulamaları.",
-  },
-  {
     title: "Web Developer",
-    company: "Startup",
-    period: "2019 - 2020",
-    description: "E-ticaret ve kurumsal web siteleri geliştirme.",
+    company: "Freelance",
+    period: "2024 - Şimdi",
+    description:
+      "React ile fronted ve Node.js ile backend geliştirme üzerine freelance çalışmalar, Wordpress altyapılı web sitesi geliştirme.",
+  },
+  {
+    title: "Fullstack Developer Intern",
+    company: "ARİS888",
+    period: "2024 - 2024",
+    description: "Yapay Zeka Destekli Canlı Destek Modülü Geliştirme.",
+  },
+  {
+    title: "Web Designer",
+    company: "Freelance",
+    period: "2020 - 2023",
+    description: "Wordperss Altyapılı Web Sitesi Geliştirme ",
   },
 ];
 
 const education = [
   {
     degree: "Bilgisayar Mühendisliği",
-    school: "X Üniversitesi",
-    period: "2015 - 2019",
+    school: "Sakarya Uygulamalı Bilimler Üniversitesi",
+    period: "2020 - 2024",
     description:
       "Yazılım geliştirme, algoritma ve veri yapıları üzerine eğitim.",
   },
   {
-    degree: "Web Geliştirme Sertifikası",
-    school: "Online Platform",
-    period: "2018",
+    degree: "Endüstri Mühendisliği",
+    school: "MSÜ Kara Harp Okulu",
+    period: "2009-2013",
     description:
-      "Modern web teknolojileri ve framework'ler üzerine kapsamlı eğitim.",
+      "Endüstri mühendisliği üzerine eğitim, işletme, üretim ve kalite/personel yönetimi üzerine eğitim.",
   },
 ];
 
 const skills = [
-  { name: "React.js", level: 90 },
-  { name: "Node.js", level: 85 },
-  { name: "JavaScript", level: 95 },
-  { name: "TypeScript", level: 80 },
-  { name: "HTML/CSS", level: 95 },
-  { name: "MongoDB", level: 75 },
+  { name: "React.js", level: 85 },
+  { name: "Node.js", level: 70 },
+  { name: "JavaScript", level: 75 },
+  { name: "TypeScript", level: 50 },
+  { name: "HTML/CSS", level: 90 },
+  { name: "MongoDB", level: 70 },
+  { name: "PostgreSQL", level: 70 },
+  { name: "TailwindCSS", level: 90 },
 ];
 const projects = [
   {
@@ -169,5 +173,16 @@ const projects = [
     web: "https://soundbeam.kudretkrbyk.com.tr/",
   },
 ];
-
-export default { experiences, education, skills, projects };
+const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/kudretkrbyk",
+    icon: FaGithub,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/kudret-kirbiyik/",
+    icon: FaLinkedin,
+  },
+];
+export default { experiences, education, skills, projects, socialLinks };
