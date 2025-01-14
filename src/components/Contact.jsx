@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const handleSubmit = (e) => {
@@ -23,19 +23,19 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: '📱',
-      title: 'Telefon',
-      content: '+90 555 555 55 55',
+      icon: "📱",
+      title: "Telefon",
+      content: "+90 553 534 25 34",
     },
     {
-      icon: '📧',
-      title: 'Email',
-      content: 'info@example.com',
+      icon: "📧",
+      title: "Email",
+      content: "info@example.com",
     },
     {
-      icon: '📍',
-      title: 'Konum',
-      content: 'İstanbul, Türkiye',
+      icon: "📍",
+      title: "Konum",
+      content: "İstanbul, Türkiye",
     },
   ];
 
@@ -118,10 +118,7 @@ const Contact = () => {
                   required
                 ></textarea>
               </div>
-              <button
-                type="submit"
-                className="btn-primary w-full text-center"
-              >
+              <button type="submit" className="btn-primary w-full text-center">
                 Mesaj Gönder
               </button>
             </form>
