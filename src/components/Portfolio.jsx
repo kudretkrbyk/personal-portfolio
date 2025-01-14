@@ -7,7 +7,7 @@ export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("Tümü");
   const { projects } = data;
 
-  const filters = ["Tümü", "Web", "Mobil", "UI/UX"];
+  const filters = ["Tümü", "Wordpress", "Frontend", "Fullstack"];
 
   const filteredProjects =
     activeFilter === "Tümü"
@@ -34,7 +34,7 @@ export default function Portfolio() {
               className={`px-6 py-2 rounded-full border border-border-color transition-all duration-300
                 ${
                   activeFilter === filter
-                    ? "bg-primary text-white"
+                    ? "bg-primary  text-white"
                     : "text-body-color hover:text-white"
                 }`}
             >
@@ -52,7 +52,7 @@ export default function Portfolio() {
                   alt={project.title}
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-primary/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <a
                     href={project.link}
                     className="text-white text-lg font-semibold hover:underline"

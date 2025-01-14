@@ -10,7 +10,7 @@ export default function Hero() {
             <h1 className="text-4xl md:text-6xl font-bold">Merhaba, Ben </h1>
             <p className="heading-gradient text-6xl  py-2">Kudret Kırbıyık</p>
             <p className="text-xl md:text-2xl text-body-color">
-              Full Stack Developer
+              Frontend Developer
             </p>
             <div className="flex flex-wrap xl:flex-nowrap gap-4">
               <a href="#portfolio" className="btn-primary w-full">

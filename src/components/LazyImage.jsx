@@ -39,8 +39,11 @@ const LazyImage = ({ src, alt, className }) => {
         observer.unobserve(imageRef);
       }
     };
-  }, [src, imageSrc, imageRef]);
-
+  }, [imageSrc, imageRef]);
+  // Yeni src değiştiğinde hemen güncelle
+  useEffect(() => {
+    setImageSrc(src);
+  }, [src]);
   return (
     <img
       ref={setImageRef}
