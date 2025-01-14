@@ -4,7 +4,7 @@ const Features = () => {
       icon: "💻",
       title: "Web Geliştirme",
       description:
-        "Modern ve responsive web uygulamaları geliştirme konusunda uzmanım.",
+        "Modern ve responsive web uygulamaları geliştirme konusunda uzmanım. İster Wordpess tabanlı ister size özel yazımları kullanan web siteleri oluşturabilirim.",
     },
     {
       icon: "🎨",
@@ -40,7 +40,8 @@ const Features = () => {
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Öne Çıkan <span className="heading-gradient">Özelliklerim</span>
+            Öne Çıkan{" "}
+            <span className="heading-gradient">Çalışma Alanlarım</span>
           </h2>
           <p className="text-body-color max-w-2xl mx-auto">
             Yazılım geliştirme sürecinde uzmanlaştığım alanlar ve size
