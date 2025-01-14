@@ -52,13 +52,6 @@ const skills = [
 ];
 const projects = [
   {
-    title: "UI/UX Tasarım",
-    category: "UI/UX",
-    image: "/portfolio/project3.jpg",
-    link: "#",
-  },
-
-  {
     title: "ahiskagroup Kurumsal Website",
     category: "Wordpress",
     image: "/assets/project/ahiskaGroup.png",

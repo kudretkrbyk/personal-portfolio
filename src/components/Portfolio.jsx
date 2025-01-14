@@ -4,10 +4,10 @@ import data from "./Data/datas";
 import PropTypes from "prop-types";
 
 export default function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState("Tümü");
+  const [activeFilter, setActiveFilter] = useState("Frontend");
   const { projects } = data;
 
-  const filters = ["Tümü", "Wordpress", "Frontend", "Fullstack"];
+  const filters = ["Tümü", "Frontend", "Fullstack", "Wordpress"];
 
   const filteredProjects =
     activeFilter === "Tümü"
