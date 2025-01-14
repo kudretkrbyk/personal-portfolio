@@ -35,7 +35,7 @@ const Contact = () => {
     {
       icon: "📍",
       title: "Konum",
-      content: "İstanbul, Türkiye",
+      content: "Kocaeli, Türkiye",
     },
   ];
 
