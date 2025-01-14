@@ -12,11 +12,11 @@ export default function Hero() {
             <p className="text-xl md:text-2xl text-body-color">
               Full Stack Developer
             </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#portfolio" className="btn-primary">
+            <div className="flex flex-wrap xl:flex-nowrap gap-4">
+              <a href="#portfolio" className="btn-primary w-full">
                 Portfolyo
               </a>
-              <a href="#contact" className="btn-primary">
+              <a href="#contact" className="btn-primary w-full">
                 İletişime Geç
               </a>
             </div>

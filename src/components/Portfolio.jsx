@@ -1,10 +1,11 @@
 import { useState } from "react";
 import LazyImage from "./LazyImage";
-import projects from "./Data/Project";
+import data from "./Data/datas";
 import PropTypes from "prop-types";
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("Tümü");
+  const { projects } = data;
 
   const filters = ["Tümü", "Web", "Mobil", "UI/UX"];
 
@@ -18,7 +19,7 @@ export default function Portfolio() {
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Seçkin <span className="heading-gradient">Projelerim</span>
+            Örnek <span className="heading-gradient">Projelerim</span>
           </h2>
           <p className="text-body-color max-w-2xl mx-auto">
             Geliştirdiğim bazı özel projeler ve çalışmalar

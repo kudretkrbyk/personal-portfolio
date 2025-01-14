@@ -8,10 +8,10 @@ export default function Navbar() {
 
   const menuItems = [
     { title: "Anasayfa", href: "#home" },
-    { title: "Özellikler", href: "#features" },
+    { title: "Hizmetlerim", href: "#features" },
     { title: "Portfolyo", href: "#portfolio" },
     { title: "Deneyim", href: "#resume" },
-    { title: "Blog", href: "#blog" },
+
     { title: "İletişim", href: "#contact" },
   ];
 
@@ -30,7 +30,7 @@ export default function Navbar() {
             className="text-2xl font-bold heading-gradient"
             onClick={(e) => handleNavClick(e, "#home")}
           >
-            KUDRET
+            Portfolio
           </a>
 
           {/* Desktop Menu */}
