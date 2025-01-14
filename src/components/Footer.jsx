@@ -1,10 +1,10 @@
-const Footer = () => {
+export default function Footer() {
   const currentYear = new Date().getFullYear();
-  
+
   const socialLinks = [
     {
-      name: 'GitHub',
-      url: 'https://github.com/',
+      name: "GitHub",
+      url: "https://github.com/",
       icon: (
         <svg
           className="w-5 h-5"
@@ -21,8 +21,8 @@ const Footer = () => {
       ),
     },
     {
-      name: 'LinkedIn',
-      url: 'https://linkedin.com/',
+      name: "LinkedIn",
+      url: "https://linkedin.com/",
       icon: (
         <svg
           className="w-5 h-5"
@@ -39,8 +39,8 @@ const Footer = () => {
       ),
     },
     {
-      name: 'Twitter',
-      url: 'https://twitter.com/',
+      name: "Twitter",
+      url: "https://twitter.com/",
       icon: (
         <svg
           className="w-5 h-5"
@@ -86,6 +86,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

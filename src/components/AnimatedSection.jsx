@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-const AnimatedSection = ({ children, className = '' }) => {
+export default function AnimatedSection({ children, className = "" }) {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
@@ -16,7 +16,7 @@ const AnimatedSection = ({ children, className = '' }) => {
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: "0px 0px -100px 0px",
       }
     );
 
@@ -35,14 +35,11 @@ const AnimatedSection = ({ children, className = '' }) => {
     <div
       ref={sectionRef}
       className={`transform transition-all duration-1000 ${
-        isVisible
-          ? 'translate-y-0 opacity-100'
-          : 'translate-y-20 opacity-0'
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
       } ${className}`}
     >
       {children}
     </div>
   );
-};
-
-export default AnimatedSection;
+}
+AnimatedSection.propTypes = undefined;

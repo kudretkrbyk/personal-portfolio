@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const LazyImage = ({ src, alt, className }) => {
-  const [imageSrc, setImageSrc] = useState('/placeholder.jpg');
+  const [imageSrc, setImageSrc] = useState("/placeholder.jpg");
   const [imageRef, setImageRef] = useState();
 
   useEffect(() => {
     let observer;
     let didCancel = false;
 
-    if (imageRef && imageSrc === '/placeholder.jpg') {
+    if (imageRef && imageSrc === "/placeholder.jpg") {
       if (IntersectionObserver) {
         observer = new IntersectionObserver(
           (entries) => {
@@ -24,7 +24,7 @@ const LazyImage = ({ src, alt, className }) => {
           },
           {
             threshold: 0.01,
-            rootMargin: '75%',
+            rootMargin: "75%",
           }
         );
         observer.observe(imageRef);
@@ -51,5 +51,5 @@ const LazyImage = ({ src, alt, className }) => {
     />
   );
 };
-
+LazyImage.propTypes = undefined;
 export default LazyImage;

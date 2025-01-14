@@ -1,99 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-
-const SkillBar = ({ skill }) => {
-  const [width, setWidth] = useState(0);
-  const skillRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setWidth(skill.level);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    if (skillRef.current) {
-      observer.observe(skillRef.current);
-    }
-
-    return () => {
-      if (skillRef.current) {
-        observer.unobserve(skillRef.current);
-      }
-    };
-  }, [skill.level]);
-
-  return (
-    <div className="card" ref={skillRef}>
-      <div className="flex justify-between p-2">
-        <span className="text-white font-medium">{skill.name}</span>
-        <span className="text-primary">{width}%</span>
-      </div>
-      <div className="w-full h-2 bg-border-color rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-primary to-[#ff014f] rounded-full transition-all duration-[2000ms] ease-out"
-          style={{ width: `${width}%` }}
-        />
-      </div>
-    </div>
-  );
-};
-
-const Resume = () => {
-  const experiences = [
-    {
-      title: "Full Stack Developer",
-      company: "Tech Company",
-      period: "2022 - Şimdi",
-      description:
-        "Modern web teknolojileri kullanarak kapsamlı web uygulamaları geliştirme.",
-    },
-    {
-      title: "Frontend Developer",
-      company: "Digital Agency",
-      period: "2020 - 2022",
-      description:
-        "Kullanıcı arayüzü geliştirme ve responsive tasarım uygulamaları.",
-    },
-    {
-      title: "Web Developer",
-      company: "Startup",
-      period: "2019 - 2020",
-      description: "E-ticaret ve kurumsal web siteleri geliştirme.",
-    },
-  ];
-
-  const education = [
-    {
-      degree: "Bilgisayar Mühendisliği",
-      school: "X Üniversitesi",
-      period: "2015 - 2019",
-      description:
-        "Yazılım geliştirme, algoritma ve veri yapıları üzerine eğitim.",
-    },
-    {
-      degree: "Web Geliştirme Sertifikası",
-      school: "Online Platform",
-      period: "2018",
-      description:
-        "Modern web teknolojileri ve framework'ler üzerine kapsamlı eğitim.",
-    },
-  ];
-
-  const skills = [
-    { name: "React.js", level: 90 },
-    { name: "Node.js", level: 85 },
-    { name: "JavaScript", level: 95 },
-    { name: "TypeScript", level: 80 },
-    { name: "HTML/CSS", level: 95 },
-    { name: "MongoDB", level: 75 },
-  ];
-
+import SkillBar from "./SkillBar";
+import data from "./Data/datas";
+export default function Resume() {
+  const { experiences, education, skills } = data;
   return (
     <section id="resume" className="section bg-dark">
       <div className="container">
@@ -140,7 +48,9 @@ const Resume = () => {
 
         {/* Yetenekler */}
         <div className="pt-12">
-          <h3 className="text-2xl font-bold text-white pb-8 text-center">Yetenekler</h3>
+          <h3 className="text-2xl font-bold text-white pb-8 text-center">
+            Yetenekler
+          </h3>
           <div className="grid md:grid-cols-2 gap-6">
             {skills.map((skill, index) => (
               <SkillBar key={index} skill={skill} />
@@ -150,6 +60,4 @@ const Resume = () => {
       </div>
     </section>
   );
-};
-
-export default Resume;
+}

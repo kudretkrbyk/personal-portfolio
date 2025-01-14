@@ -1,27 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useScroll } from '../context/ScrollContext';
+import { useState } from "react";
+import { useScroll } from "../context/ScrollContext";
 
-const Navbar = () => {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+
   const { scrollToSection } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const menuItems = [
-    { title: 'Anasayfa', href: '#home' },
-    { title: 'Özellikler', href: '#features' },
-    { title: 'Portfolyo', href: '#portfolio' },
-    { title: 'Deneyim', href: '#resume' },
-    { title: 'Blog', href: '#blog' },
-    { title: 'İletişim', href: '#contact' },
+    { title: "Anasayfa", href: "#home" },
+    { title: "Özellikler", href: "#features" },
+    { title: "Portfolyo", href: "#portfolio" },
+    { title: "Deneyim", href: "#resume" },
+    { title: "Blog", href: "#blog" },
+    { title: "İletişim", href: "#contact" },
   ];
 
   const handleNavClick = (e, href) => {
@@ -31,15 +22,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-dark/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-    }`}>
+    <nav className="fixed w-full z-50 transition-all duration-300 bg-dark/95 backdrop-blur-sm shadow-lg ">
       <div className="container py-5">
         <div className="flex items-center justify-between">
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             className="text-2xl font-bold heading-gradient"
-            onClick={(e) => handleNavClick(e, '#home')}
+            onClick={(e) => handleNavClick(e, "#home")}
           >
             KUDRET
           </a>
@@ -82,11 +71,13 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${
-          isOpen 
-            ? 'max-h-96 opacity-100 mt-4' 
-            : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
+        <div
+          className={`md:hidden transition-all duration-300 ease-in-out ${
+            isOpen
+              ? "min-h-screen opacity-100 p-4"
+              : "max-h-0 opacity-0 overflow-hidden"
+          }`}
+        >
           <div className="border-t border-border-color pt-4">
             {menuItems.map((item) => (
               <a
@@ -103,6 +94,4 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}
