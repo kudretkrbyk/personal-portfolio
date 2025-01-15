@@ -26,16 +26,19 @@ export default function Contact() {
       icon: "📱",
       title: "Telefon",
       content: "+90 553 534 25 34",
+      link: "tel:+905535342534", // Telefon numarası için `tel:` protokolü
     },
     {
       icon: "📧",
       title: "Email",
-      content: "info@example.com",
+      content: "kudretkrbyk@gmail.com",
+      link: "mailto:kudretkrbyk@gmail.com", // E-posta için `mailto:` protokolü
     },
     {
       icon: "📍",
       title: "Konum",
       content: "Kocaeli, Türkiye",
+      link: "#", // Konum için tıklanabilir bir özellik gerekmeyebilir
     },
   ];
 
@@ -62,7 +65,19 @@ export default function Contact() {
                     <h3 className="text-xl font-bold text-white mb-2">
                       {info.title}
                     </h3>
-                    <p className="text-body-color">{info.content}</p>
+                    <p className="text-body-color">
+                      {/* Tıklanabilir link */}
+                      <a
+                        href={info.link}
+                        target={
+                          info.link.startsWith("http") ? "_blank" : "_self"
+                        }
+                        rel="noopener noreferrer"
+                        className="hover:text-primary transition-colors"
+                      >
+                        {info.content}
+                      </a>
+                    </p>
                   </div>
                 </div>
               ))}
