@@ -136,6 +136,7 @@ const projects = [
     image: "/assets/project/gilber.png",
     link: "#",
     web: "https://gilber.kudretkrbyk.com.tr/",
+    sourceCode: "https://github.com/kudretkrbyk/wordpressGilber",
   },
   {
     title: "Bemins Frontend E-Commerce Template",
@@ -143,6 +144,7 @@ const projects = [
     image: "/assets/project/bemins.png",
     link: "#",
     web: "https://bemins.kudretkrbyk.com.tr/",
+    sourceCode: "https://github.com/kudretkrbyk/WordpressBemins",
   },
   {
     title: "Watch Frontend  Template",
@@ -150,6 +152,7 @@ const projects = [
     image: "/assets/project/watch.png",
     link: "#",
     web: "https://analogwatch.kudretkrbyk.com.tr/",
+    sourceCode: "https://github.com/kudretkrbyk/analogWatch",
   },
   {
     title: "Tripo Games Frontend  Template",
@@ -157,6 +160,7 @@ const projects = [
     image: "/assets/project/tripo.png",
     link: "#",
     web: "https://tripogames.kudretkrbyk.com.tr/",
+    sourceCode: "https://github.com/kudretkrbyk/tripoGames",
   },
   {
     title: "SoundBeam Frontend  Template",
@@ -164,6 +168,7 @@ const projects = [
     image: "/assets/project/soundBeam.png",
     link: "#",
     web: "https://soundbeam.kudretkrbyk.com.tr/",
+    sourceCode: "https://github.com/kudretkrbyk/sounBeamTemplateClone",
   },
 ];
 const socialLinks = [

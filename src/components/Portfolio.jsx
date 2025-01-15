@@ -52,13 +52,36 @@ export default function Portfolio() {
                   alt={project.title}
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-primary/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={project.link}
-                    className="text-white text-lg font-semibold hover:underline"
-                  >
-                    Detayları Gör
-                  </a>
+                <div className="absolute inset-0 bg-primary/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* Dinamik Linkleme */}
+                  {project.category === "Wordpress" ? (
+                    <a
+                      href={project.web}
+                      target="_blank"
+                      className="text-white text-lg font-semibold hover:underline hover:cursor-pointer"
+                    >
+                      Canlı Görünüm
+                    </a>
+                  ) : (
+                    <>
+                      <a
+                        href={project.web} // Canlı görünüm için link
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white text-lg font-semibold hover:underline hover:cursor-pointer mb-2"
+                      >
+                        Canlı Görünüm
+                      </a>
+                      <a
+                        href={project.sourceCode} // Kaynak kodları için link
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white text-lg font-semibold hover:underline hover:cursor-pointer"
+                      >
+                        Kaynak Kodları
+                      </a>
+                    </>
+                  )}
                 </div>
               </div>
               <div className="pt-4">
@@ -74,4 +97,5 @@ export default function Portfolio() {
     </section>
   );
 }
+
 Portfolio.propTypes = undefined;
