@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useAddContactMutation } from "../services/contactApi";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,9 +10,17 @@ export default function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e) => {
+  const [addContact, { isLoading, isSuccess, isError, error }] =
+    useAddContactMutation();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      await addContact(formData).unwrap();
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      console.error("Form gönderme hatası:", err);
+    }
   };
 
   const handleChange = (e) => {
@@ -48,12 +57,12 @@ export default function Contact() {
         <title>İletişim | Kudret Kırbıyık</title>
         <meta
           name="description"
-          content="Kudret kırbıyık ile iletişime geçmek için iletişim formunu doldurun veya doğrudan e-posta ve telefon yoluyla ulaşın."
+          content="Kudret Kırbıyık ile iletişime geçmek için iletişim formunu doldurun veya doğrudan e-posta ve telefon yoluyla ulaşın."
         />
-        <meta property="og:title" content="İletişim | Kudret kırbıyık" />
+        <meta property="og:title" content="İletişim | Kudret Kırbıyık" />
         <meta
           property="og:description"
-          content="Projeleriniz için Kudret kırbıyık ile iletişime geçin. Telefon, e-posta ve konum bilgileri bu sayfada."
+          content="Projeleriniz için Kudret Kırbıyık ile iletişime geçin. Telefon, e-posta ve konum bilgileri bu sayfada."
         />
         <meta property="og:image" content="/seo-contact-thumbnail.jpg" />
       </Helmet>
@@ -142,9 +151,25 @@ export default function Contact() {
                   required
                 ></textarea>
               </div>
-              <button type="submit" className="btn-primary w-full text-center">
-                Mesaj Gönder
+
+              <button
+                type="submit"
+                className="btn-primary w-full text-center"
+                disabled={isLoading}
+              >
+                {isLoading ? "Gönderiliyor..." : "Mesaj Gönder"}
               </button>
+
+              {isSuccess && (
+                <p className="text-green-400 text-center mt-4">
+                  Mesajınız başarıyla gönderildi!
+                </p>
+              )}
+              {isError && (
+                <p className="text-red-400 text-center mt-4">
+                  Hata: {error?.data?.message || "Mesaj gönderilemedi."}
+                </p>
+              )}
             </form>
           </div>
         </div>
