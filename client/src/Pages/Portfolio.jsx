@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LazyImage from "./LazyImage";
+import LazyImage from "../components/LazyImage";
 import { useGetProjectsQuery } from "../services/projectApi";
 
 const API_URL = import.meta.env.VITE_IMG_URL;

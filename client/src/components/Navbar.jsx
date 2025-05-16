@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useScroll } from "../context/ScrollContext";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../services/auth/authSlice";
@@ -12,21 +12,18 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
-  const { scrollToSection } = useScroll();
-
   const menuItems = [
-    { title: "Anasayfa", href: "#home" },
-    { title: "Hizmetlerim", href: "#features" },
-    { title: "Portfolyo", href: "#portfolio" },
-    { title: "Deneyim", href: "#resume" },
-
-    { title: "İletişim", href: "#contact" },
+    { title: "Anasayfa", href: "/anasayfa" },
+    { title: "Hizmetlerim", href: "/hizmetler" },
+    { title: "Portfolyo", href: "/portfolyo" },
+    { title: "İletişim", href: "/iletisim" },
+    { title: "Blog", href: "/blog" },
   ];
 
   const handleNavClick = (e, href) => {
     navigate("/");
     e.preventDefault();
-    scrollToSection(href);
+
     setIsOpen(false);
   };
 
@@ -34,25 +31,21 @@ export default function Navbar() {
     <nav className=" w-full min-h-10  z-50 transition-all duration-300 bg-dark/95 backdrop-blur-sm shadow-lg ">
       <div className="container py-5">
         <div className="flex items-center justify-between">
-          <a
-            href="#home"
-            className="text-2xl font-bold heading-gradient"
-            onClick={(e) => handleNavClick(e, "#home")}
-          >
+          <Link to={"/"} className="text-2xl font-bold heading-gradient">
             Portfolio
-          </a>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
-              <a
+              <Link
+                to={item.href}
                 key={item.title}
                 href={item.href}
                 className="nav-link font-medium"
-                onClick={(e) => handleNavClick(e, item.href)}
               >
                 {item.title}
-              </a>
+              </Link>
             ))}
             {isLoggedIn && (
               <button
