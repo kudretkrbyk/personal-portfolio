@@ -1,11 +1,20 @@
 import { useState } from "react";
 import LazyImage from "./LazyImage";
-import data from "./Data/datas";
-import PropTypes from "prop-types";
+const API_URL = import.meta.env.VITE_IMG_URL;
+
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchProjects } from "../slices/projectSlice";
 
 export default function Portfolio() {
+  const dispatch = useDispatch();
+  const { projects, isLoading, isSuccess } = useSelector(
+    (state) => state.projects
+  );
   const [activeFilter, setActiveFilter] = useState("Frontend");
-  const { projects } = data;
+  useEffect(() => {
+    dispatch(fetchProjects());
+  }, [dispatch]);
 
   const filters = ["Tümü", "Frontend", "Fullstack", "Wordpress"];
 
@@ -13,7 +22,13 @@ export default function Portfolio() {
     activeFilter === "Tümü"
       ? projects
       : projects.filter((project) => project.category === activeFilter);
-
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
+        <div className="loader"></div>
+      </div>
+    );
+  }
   return (
     <section id="portfolio" className="bg-dark py-20">
       <div className="container">
@@ -48,7 +63,7 @@ export default function Portfolio() {
             <div key={index} className="card group overflow-hidden">
               <div className="relative overflow-hidden rounded-lg">
                 <LazyImage
-                  src={project.image}
+                  src={`${API_URL}${project.image}`}
                   alt={project.title}
                   className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
@@ -56,7 +71,7 @@ export default function Portfolio() {
                   {/* Dinamik Linkleme */}
                   {project.category === "Wordpress" ? (
                     <a
-                      href={project.web}
+                      href={project.liveview}
                       target="_blank"
                       className="text-white text-lg font-semibold hover:underline hover:cursor-pointer"
                     >
@@ -65,7 +80,7 @@ export default function Portfolio() {
                   ) : (
                     <>
                       <a
-                        href={project.web} // Canlı görünüm için link
+                        href={project.liveview} // Canlı görünüm için link
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-white text-lg font-semibold hover:underline hover:cursor-pointer mb-2"
@@ -73,7 +88,7 @@ export default function Portfolio() {
                         Canlı Görünüm
                       </a>
                       <a
-                        href={project.sourceCode} // Kaynak kodları için link
+                        href={project.github} // Kaynak kodları için link
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-white text-lg font-semibold hover:underline hover:cursor-pointer"
@@ -88,7 +103,7 @@ export default function Portfolio() {
                 <h3 className="text-xl font-bold text-white mb-2">
                   {project.title}
                 </h3>
-                <p className="text-body-color">{project.category}</p>
+                <p className="text-body-color">{project.tag}</p>
               </div>
             </div>
           ))}
@@ -97,5 +112,3 @@ export default function Portfolio() {
     </section>
   );
 }
-
-Portfolio.propTypes = undefined;

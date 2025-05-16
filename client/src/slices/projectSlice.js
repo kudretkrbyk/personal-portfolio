@@ -14,15 +14,17 @@ const initialState = {
   message: "",
 };
 // Ortak config fonksiyonu
-const getConfig = (state) => {
+const getConfig = (state, isMultipart = false) => {
   const token = state.auth?.user?.token;
-  return {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
+  const headers = {
+    Authorization: `Bearer ${token}`,
   };
+  if (!isMultipart) {
+    headers["Content-Type"] = "application/json";
+  }
+  return { headers };
 };
+
 // GET ALL
 export const fetchProjects = createAsyncThunk(
   "projects/fetchAll",
@@ -59,11 +61,21 @@ export const addProject = createAsyncThunk(
   "projects/add",
   async (data, thunkAPI) => {
     try {
-      const config = getConfig(thunkAPI.getState());
-      const res = await axios.post(API_URL, data, config);
+      const config = getConfig(thunkAPI.getState(), true); // multipart desteği
+      const form = new FormData();
+      form.append("title", data.title);
+      form.append("tag", data.tag);
+      form.append("description", data.description);
+      form.append("image", data.image); // 🔥 file burada
+      form.append("liveview", data.liveview);
+      form.append("github", data.github);
+
+      const res = await axios.post(API_URL, form, config);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue("Proje ekleme başarısız.", error);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "Proje eklenemedi"
+      );
     }
   }
 );
@@ -118,7 +130,6 @@ const projectSlice = createSlice({
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projects = action.payload;
-        state.isSuccess = true;
       })
       .addCase(fetchProjects.rejected, (state, action) => {
         state.isLoading = false;
