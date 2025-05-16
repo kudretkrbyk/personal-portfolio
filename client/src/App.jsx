@@ -10,6 +10,7 @@ import Services from "./Pages/Services";
 import Portfolyo from "./Pages/Portfolio";
 
 import Home from "./Pages/Home";
+import Blog from "./Pages/Blog";
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
           <Route path="/iletisim" element={<Contact />} />
           <Route path="/hizmetler" element={<Services />} />
           <Route path="/portfolyo" element={<Portfolyo />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/blog" element={<Blog />} />
           {/* Korumalı rota */}
           <Route
             path="/Admin"
