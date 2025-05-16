@@ -16,8 +16,8 @@ export default function Navbar() {
     { title: "Anasayfa", href: "/anasayfa" },
     { title: "Hizmetlerim", href: "/hizmetler" },
     { title: "Portfolyo", href: "/portfolyo" },
-    { title: "İletişim", href: "/iletisim" },
     { title: "Blog", href: "/blog" },
+    { title: "İletişim", href: "/iletisim" },
   ];
 
   const handleNavClick = (e) => {

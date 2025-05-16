@@ -15,6 +15,7 @@ const getAll = async (req, res) => {
 const getBySlug = async (req, res) => {
   try {
     const slug = sanityFunction(req.params.slug);
+    console.log("slug", slug);
     if (!slug) {
       return res.status(400).send({ success: false, message: "Geçersiz slug" });
     }
@@ -55,6 +56,7 @@ const getById = async (req, res) => {
 
 // YENİ BLOG EKLE
 const addData = async (req, res) => {
+  console.log("gelen veriler", req, res);
   try {
     const { title, slug, content } = req.body;
     const s_title = sanityFunction(title);

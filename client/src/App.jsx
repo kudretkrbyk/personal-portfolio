@@ -11,6 +11,7 @@ import Portfolyo from "./Pages/Portfolio";
 
 import Home from "./Pages/Home";
 import Blog from "./Pages/Blog";
+import BlogDetail from "./Pages/BlogDetail";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/hizmetler" element={<Services />} />
           <Route path="/portfolyo" element={<Portfolyo />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           {/* Korumalı rota */}
           <Route
             path="/Admin"
