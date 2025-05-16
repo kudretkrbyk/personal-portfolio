@@ -7,6 +7,7 @@ const sequelize = require("./config/db.js");
 const authRoutes = require("./routes/authRoutes.js");
 const { projectsRoutes } = require("./routes/projectsRoutes.js");
 const { contactRoutes } = require("./routes/contactRoutes.js");
+const { blogRoutes } = require("./routes/blogRoutes.js");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use("/api", authRoutes);
 app.use("/api/projects", projectsRoutes);
 app.use("/api/contacts", contactRoutes);
+app.use("/api/blogs", blogRoutes);
 
 // Veritabanı bağlantısı
 (async () => {
