@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useScroll } from "../context/ScrollContext";
-
+import { useNavigate } from "react-router-dom";
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const { scrollToSection } = useScroll();
@@ -16,6 +17,7 @@ export default function Navbar() {
   ];
 
   const handleNavClick = (e, href) => {
+    navigate("/");
     e.preventDefault();
     scrollToSection(href);
     setIsOpen(false);

@@ -5,7 +5,7 @@ export default function Footer() {
   const { socialLinks } = data;
 
   return (
-    <footer className="bg-card-dark border-t border-border-color">
+    <footer className="bg-card-dark border-t border-border-color ">
       <div className="container py-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-center md:text-left mb-4 md:mb-0">
