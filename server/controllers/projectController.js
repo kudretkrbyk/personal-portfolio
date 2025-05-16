@@ -14,38 +14,27 @@ const getAll = async (req, res) => {
 
 const addData = async (req, res) => {
   try {
-    let { title, tag, description, image, liveview, github } = req.body;
-    const s_title = sanityFunction(title);
-    const s_tag = sanityFunction(tag);
-    const s_description = sanityFunction(description);
-    const s_image = sanityFunction(image);
-    const s_liveview = sanityFunction(liveview);
-    const s_github = sanityFunction(github);
+    let { title, tag, description, liveview, github } = req.body;
 
-    if (
-      !s_title ||
-      !s_tag ||
-      !s_description ||
-      !s_image ||
-      !s_liveview ||
-      !s_github
-    ) {
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+
+    if (!title || !tag || !description || !imagePath || !liveview || !github) {
       return res.status(400).send({
         success: false,
-        message: "Lütfen geçerli veriler ile tekrar deneyiniz!!",
+        message: "Eksik bilgi gönderdiniz",
       });
     }
 
-    const response = await Project.create({
+    const newProject = await Project.create({
       title,
       tag,
       description,
-      image,
+      image: imagePath, // 🔥 görselin yolu
       liveview,
       github,
     });
 
-    return res.status(201).send(response);
+    return res.status(201).send(newProject);
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middleware/upload");
 const { verifyToken } = require("../middleware/authMiddleware");
 
 const {
@@ -8,12 +9,14 @@ const {
   getById,
   addData,
   updateById,
-} = require("../contollers/projectController");
-router.get("/", getAll).post("/", verifyToken, addData);
-router
-  .get("/:id", verifyToken, getById)
-  .put("/:id", verifyToken, updateById)
-  .delete("/:id", verifyToken, deleteById);
+} = require("../controllers/projectController");
+
+// 👇 Burada upload middleware'ini ekledik
+router.get("/", getAll);
+router.post("/", verifyToken, upload.single("image"), addData);
+router.get("/:id", verifyToken, getById);
+router.put("/:id", verifyToken, updateById);
+router.delete("/:id", verifyToken, deleteById);
 
 module.exports = {
   projectsRoutes: router,

@@ -7,7 +7,7 @@ const {
   getById,
   addData,
   updateById,
-} = require("../contollers/contactController");
+} = require("../controllers/contactController");
 router.get("/", getAll).post("/", addData);
 router.get("/:id", getById).put("/:id", updateById).delete("/:id", deleteById);
 
