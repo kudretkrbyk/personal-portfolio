@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useScroll } from "../context/ScrollContext";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../slices/auth/authSlice";
+import { logout } from "../services/auth/authSlice";
 import { CiLogout } from "react-icons/ci";
 
 export default function Navbar() {
@@ -31,7 +31,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed w-full z-50 transition-all duration-300 bg-dark/95 backdrop-blur-sm shadow-lg ">
+    <nav className=" w-full min-h-10  z-50 transition-all duration-300 bg-dark/95 backdrop-blur-sm shadow-lg ">
       <div className="container py-5">
         <div className="flex items-center justify-between">
           <a

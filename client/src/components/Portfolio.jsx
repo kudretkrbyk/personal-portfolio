@@ -1,20 +1,12 @@
 import { useState } from "react";
 import LazyImage from "./LazyImage";
+import { useGetProjectsQuery } from "../services/projectApi";
+
 const API_URL = import.meta.env.VITE_IMG_URL;
-
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchProjects } from "../slices/projectSlice";
-
 export default function Portfolio() {
-  const dispatch = useDispatch();
-  const { projects, isLoading, isSuccess } = useSelector(
-    (state) => state.projects
-  );
+  const { data: projects = [], isLoading, isError } = useGetProjectsQuery();
+
   const [activeFilter, setActiveFilter] = useState("Frontend");
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
 
   const filters = ["Tümü", "Frontend", "Fullstack", "Wordpress"];
 

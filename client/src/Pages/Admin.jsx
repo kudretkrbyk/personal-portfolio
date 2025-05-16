@@ -1,47 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import {
-  fetchProjects,
-  addProject,
-  deleteProject,
-  updateProject,
-  resetProjectState,
-} from "../slices/projectSlice";
+  useGetProjectsQuery,
+  useAddProjectMutation,
+  useUpdateProjectMutation,
+  useDeleteProjectMutation,
+} from "../services/projectApi";
+
 const API_URL = import.meta.env.VITE_IMG_URL;
 
 export default function Admin() {
-  const dispatch = useDispatch();
-  const { projects, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.projects
-  );
+  const { data: projects = [], isLoading, isError } = useGetProjectsQuery();
+  const [addProject] = useAddProjectMutation();
+  const [updateProject] = useUpdateProjectMutation();
+  const [deleteProject] = useDeleteProjectMutation();
 
   const [formData, setFormData] = useState({
     title: "",
     tag: "",
     description: "",
-    image: null, // 👈 file nesnesi olarak tutulacak
+    image: null,
     liveview: "",
     github: "",
   });
 
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState(null);
-
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      resetForm();
-      setEditMode(false);
-      setEditId(null);
-      dispatch(resetProjectState());
-      dispatch(fetchProjects()); // Eğer proje listesini yenilemek istersen
-    }
-  }, [isSuccess, dispatch]);
-
-  console.log(isSuccess);
+  const [message, setMessage] = useState("");
 
   const resetForm = () => {
     setFormData({
@@ -54,6 +38,7 @@ export default function Admin() {
     });
     setEditMode(false);
     setEditId(null);
+    setMessage("");
   };
 
   const handleChange = (e) => {
@@ -71,14 +56,26 @@ export default function Admin() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (editMode) {
-      // update için image desteği yoksa buraya dokunma, aksi halde FormData gerekir
-      dispatch(updateProject({ id: editId, ...formData }));
-    } else {
-      dispatch(addProject(formData));
+    const form = new FormData();
+    form.append("title", formData.title);
+    form.append("tag", formData.tag);
+    form.append("description", formData.description);
+    form.append("image", formData.image);
+    form.append("liveview", formData.liveview);
+    form.append("github", formData.github);
+
+    try {
+      if (editMode) {
+        await updateProject({ id: editId, formData }).unwrap();
+      } else {
+        await addProject(form).unwrap();
+      }
+      resetForm();
+    } catch (err) {
+      setMessage("İşlem başarısız: " + (err?.data?.message || err.message));
     }
   };
 
@@ -89,25 +86,28 @@ export default function Admin() {
       title: project.title,
       tag: project.tag,
       description: project.description,
-      image: null, // Eski image'i değiştirmiyoruz burada
+      image: null,
       liveview: project.liveview,
       github: project.github,
     });
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("Bu projeyi silmek istediğinize emin misiniz?")) {
-      dispatch(deleteProject(id));
+      try {
+        await deleteProject(id).unwrap();
+      } catch (err) {
+        setMessage("Silme başarısız: " + (err?.data?.message || err.message));
+      }
     }
   };
-  console.log(projects);
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-12 px-6">
+    <div className="min-h-screen bg-gray-900 text-white p-10  ">
       <h2 className="text-3xl font-bold text-center mb-8">
         Admin Panel: Projeler
       </h2>
 
-      {/* Form */}
       <div className="max-w-3xl mx-auto bg-gray-800 p-8 rounded-lg mb-10">
         <h3 className="text-2xl font-bold mb-6">
           {editMode ? "Projeyi Güncelle" : "Yeni Proje Ekle"}
@@ -119,8 +119,8 @@ export default function Admin() {
             placeholder="Proje Başlığı"
             value={formData.title}
             onChange={handleChange}
-            className="w-full p-3 rounded bg-gray-700 text-white"
             required
+            className="w-full p-3 rounded bg-gray-700 text-white"
           />
           <input
             type="text"
@@ -128,8 +128,8 @@ export default function Admin() {
             placeholder="Kategori (tag)"
             value={formData.tag}
             onChange={handleChange}
-            className="w-full p-3 rounded bg-gray-700 text-white"
             required
+            className="w-full p-3 rounded bg-gray-700 text-white"
           />
           <textarea
             name="description"
@@ -137,11 +137,9 @@ export default function Admin() {
             value={formData.description}
             onChange={handleChange}
             rows="4"
-            className="w-full p-3 rounded bg-gray-700 text-white"
             required
-          ></textarea>
-
-          {/* Dosya input */}
+            className="w-full p-3 rounded bg-gray-700 text-white"
+          />
           <input
             type="file"
             name="image"
@@ -149,7 +147,6 @@ export default function Admin() {
             onChange={handleChange}
             className="w-full p-3 rounded bg-gray-700 text-white"
           />
-
           <input
             type="text"
             name="liveview"
@@ -166,7 +163,6 @@ export default function Admin() {
             onChange={handleChange}
             className="w-full p-3 rounded bg-gray-700 text-white"
           />
-
           <button
             type="submit"
             disabled={isLoading}
@@ -175,21 +171,9 @@ export default function Admin() {
             {isLoading ? "İşleniyor..." : editMode ? "Güncelle" : "Ekle"}
           </button>
         </form>
-
-        {/* Feedback */}
-        {isSuccess && (
-          <p className="text-green-400 text-center mt-4">İşlem başarılı!</p>
-        )}
-        {isError && (
-          <p className="text-red-400 text-center mt-4">
-            {typeof message === "string"
-              ? message
-              : message?.message || "Bilinmeyen hata"}
-          </p>
-        )}
+        {message && <p className="text-red-400 text-center mt-4">{message}</p>}
       </div>
 
-      {/* Proje Listesi */}
       <div className="grid md:grid-cols-2 gap-6">
         {projects.map((project) => (
           <div
@@ -200,12 +184,11 @@ export default function Admin() {
               loading="lazy"
               src={`${API_URL}${project.image}`}
               alt={project.title}
-              className="w-full  object-cover rounded-lg mb-4"
+              className="w-full object-cover rounded-lg mb-4"
             />
             <h4 className="text-xl font-bold">{project.title}</h4>
             <p className="text-gray-400">{project.tag}</p>
             <p className="text-gray-300 mt-2">{project.description}</p>
-
             <div className="flex gap-4 mt-4">
               <button
                 onClick={() => handleEdit(project)}

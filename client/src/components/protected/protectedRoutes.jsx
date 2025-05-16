@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../slices/auth/authSlice"; // logout action'ı unutma
+import { logout } from "../../services/auth/authSlice"; // logout action'ı unutma
 
 export default function ProtectedRoute({ children, redirectTo = "/login" }) {
   const dispatch = useDispatch();

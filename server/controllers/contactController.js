@@ -35,6 +35,7 @@ const addData = async (req, res) => {
     });
 
     res.send(response);
+    console.log("contact contr respnse", response);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }

@@ -1,15 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import projectSlice from "./src/slices/projectSlice";
-
-import contactSlice from "./src/slices/projectSlice";
-import themeReducer from "./src/slices/projectSlice";
-import authReducer from "./src/slices/auth/authSlice";
+import { projectApi } from "./src/services/projectApi";
+import { contactApi } from "./src/services/contactApi";
+import authReducer from "./src/services/auth/authSlice";
+import themeReducer from "./src/slices/themeSlice"; // varsayalım ayrı dosyada
 
 export const store = configureStore({
   reducer: {
-    projects: projectSlice,
-    contact: contactSlice, // ✅ doğru isim (state.contact olarak kullanılıyor)
+    auth: authReducer,
     theme: themeReducer,
-    auth: authReducer, // ✅ doğru isim (state.auth olarak kullanılıyor)
+    [projectApi.reducerPath]: projectApi.reducer,
+    [contactApi.reducerPath]: contactApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(projectApi.middleware)
+      .concat(contactApi.middleware),
 });

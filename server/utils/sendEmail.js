@@ -5,14 +5,14 @@ const sendEmail = async ({ name, email, subject, message }) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER, // senin gmail adresin
-      pass: process.env.EMAIL_PASS, // google app password
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USERTO, // kendine gönderiyorsun (info@ gibi)
+    from: `"${name} via Kudret Site" <${process.env.EMAIL_USER}>`, // ✅ Görünen ad değişir
+    to: process.env.EMAIL_USERTO,
     subject: `İletişim Formu - ${subject}`,
     html: `
       <h3>Yeni iletişim mesajı</h3>
@@ -21,6 +21,7 @@ const sendEmail = async ({ name, email, subject, message }) => {
       <p><strong>Konu:</strong> ${subject}</p>
       <p><strong>Mesaj:</strong> ${message}</p>
     `,
+    replyTo: email, // ✅ Yanıtla butonu gönderene gider
   };
 
   await transporter.sendMail(mailOptions);

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { login, reset } from "../slices/auth/authSlice";
+import { login, reset } from "../services/auth/authSlice";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
