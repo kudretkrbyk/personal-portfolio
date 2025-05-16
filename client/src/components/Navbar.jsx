@@ -20,7 +20,7 @@ export default function Navbar() {
     { title: "Blog", href: "/blog" },
   ];
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e) => {
     navigate("/");
     e.preventDefault();
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,7 +11,6 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Form gönderme işlemi burada yapılacak
     console.log(formData);
   };
 
@@ -26,29 +26,43 @@ export default function Contact() {
       icon: "📱",
       title: "Telefon",
       content: "+90 553 534 25 34",
-      link: "tel:+905535342534", // Telefon numarası için `tel:` protokolü
+      link: "tel:+905535342534",
     },
     {
       icon: "📧",
       title: "Email",
       content: "kudretkrbyk@gmail.com",
-      link: "mailto:kudretkrbyk@gmail.com", // E-posta için `mailto:` protokolü
+      link: "mailto:kudretkrbyk@gmail.com",
     },
     {
       icon: "📍",
       title: "Konum",
       content: "Kocaeli, Türkiye",
-      link: "#", // Konum için tıklanabilir bir özellik gerekmeyebilir
+      link: "#",
     },
   ];
 
   return (
     <section id="contact" className="section bg-dark">
+      <Helmet>
+        <title>İletişim | Kudret Kırbıyık</title>
+        <meta
+          name="description"
+          content="Kudret kırbıyık ile iletişime geçmek için iletişim formunu doldurun veya doğrudan e-posta ve telefon yoluyla ulaşın."
+        />
+        <meta property="og:title" content="İletişim | Kudret kırbıyık" />
+        <meta
+          property="og:description"
+          content="Projeleriniz için Kudret kırbıyık ile iletişime geçin. Telefon, e-posta ve konum bilgileri bu sayfada."
+        />
+        <meta property="og:image" content="/seo-contact-thumbnail.jpg" />
+      </Helmet>
+
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Benimle <span className="heading-gradient">İletişime Geçin</span>
-          </h2>
+          </h1>
           <p className="text-body-color max-w-2xl mx-auto">
             Projeleriniz için benimle iletişime geçebilirsiniz
           </p>
@@ -56,32 +70,27 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Info */}
-          <div>
-            <div className="grid gap-6">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="card flex items-center p-6">
-                  <div className="text-4xl mr-4">{info.icon}</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2">
-                      {info.title}
-                    </h3>
-                    <p className="text-body-color">
-                      {/* Tıklanabilir link */}
-                      <a
-                        href={info.link}
-                        target={
-                          info.link.startsWith("http") ? "_blank" : "_self"
-                        }
-                        rel="noopener noreferrer"
-                        className="hover:text-primary transition-colors"
-                      >
-                        {info.content}
-                      </a>
-                    </p>
-                  </div>
+          <div className="grid gap-6">
+            {contactInfo.map((info, index) => (
+              <div key={index} className="card flex items-center p-6">
+                <div className="text-4xl mr-4">{info.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {info.title}
+                  </h3>
+                  <p className="text-body-color">
+                    <a
+                      href={info.link}
+                      target={info.link.startsWith("http") ? "_blank" : "_self"}
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors"
+                    >
+                      {info.content}
+                    </a>
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Contact Form */}
