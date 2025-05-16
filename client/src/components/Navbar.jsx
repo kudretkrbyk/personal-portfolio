@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { useScroll } from "../context/ScrollContext";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../slices/auth/authSlice";
+import { CiLogout } from "react-icons/ci";
+
 export default function Navbar() {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const isLoggedIn = Boolean(user);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -47,6 +54,14 @@ export default function Navbar() {
                 {item.title}
               </a>
             ))}
+            {isLoggedIn && (
+              <button
+                onClick={() => dispatch(logout())}
+                className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors border border-gray-300 dark:border-gray-600"
+              >
+                <CiLogout className="" />
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}

@@ -3,7 +3,7 @@ import projectSlice from "./src/slices/projectSlice";
 
 import contactSlice from "./src/slices/projectSlice";
 import themeReducer from "./src/slices/projectSlice";
-import authReducer from "./src/slices/projectSlice";
+import authReducer from "./src/slices/auth/authSlice";
 
 export const store = configureStore({
   reducer: {
