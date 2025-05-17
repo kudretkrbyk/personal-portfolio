@@ -48,7 +48,9 @@ const skills = [
   { name: "HTML/CSS", level: 90 },
   { name: "MongoDB", level: 70 },
   { name: "PostgreSQL", level: 70 },
+  { name: "MariaDB", level: 70 },
   { name: "TailwindCSS", level: 90 },
+  { name: "Wordpress", level: 90 },
 ];
 
 const socialLinks = [

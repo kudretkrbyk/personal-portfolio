@@ -12,6 +12,7 @@ import Portfolyo from "./Pages/Portfolio";
 import Home from "./Pages/Home";
 import Blog from "./Pages/Blog";
 import BlogDetail from "./Pages/BlogDetail";
+import NotFound from "./Pages/NotFound";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <main className="bg-dark">
         <Routes>
           <Route path="/anasayfa" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
           <Route path="/Login" element={<Login />} />
           <Route path="/iletisim" element={<Contact />} />
@@ -27,6 +29,7 @@ const App = () => {
           <Route path="/portfolyo" element={<Portfolyo />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
+          <Route path="/*" element={<NotFound />} />
           {/* Korumalı rota */}
           <Route
             path="/Admin"

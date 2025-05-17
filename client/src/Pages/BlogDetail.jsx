@@ -9,6 +9,11 @@ import { useEffect, useRef, useState } from "react";
 const API_URL = import.meta.env.VITE_IMG_URL;
 
 export default function BlogDetail() {
+  const stripHTML = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  };
   const { slug } = useParams();
   const { data: blog, isLoading, isError } = useGetBlogBySlugQuery(slug);
   const { data: allBlogs = [] } = useGetAllBlogsQuery();
@@ -150,7 +155,7 @@ export default function BlogDetail() {
                   <div className="p-4">
                     <h3 className="font-semibold">{b.title}</h3>
                     <p className="text-sm text-gray-400">
-                      {b.content.slice(0, 80)}...
+                      {stripHTML(b.content.slice(0, 80))}...
                     </p>
                   </div>
                 </a>

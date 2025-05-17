@@ -29,10 +29,16 @@ export default function Navbar() {
 
   return (
     <nav className=" w-full min-h-10  z-50 transition-all duration-300 bg-dark/95 backdrop-blur-sm shadow-lg ">
-      <div className="container py-5">
+      <div className="container py-3">
         <div className="flex items-center justify-between">
-          <Link to={"/"} className="text-2xl font-bold heading-gradient">
-            Portfolio
+          <Link
+            to={"/anasayfa"}
+            className="text-2xl font-bold heading-gradient"
+          >
+            <img
+              className="w-full object-cover object-center "
+              src="/kudretkrbyk-logo.svg"
+            ></img>
           </Link>
 
           {/* Desktop Menu */}

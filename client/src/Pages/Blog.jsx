@@ -54,7 +54,10 @@ export default function Blog() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {blogs.map((post, index) => (
-            <article key={index} className="card flex flex-col group">
+            <article
+              key={index}
+              className="card flex flex-col items-start  group"
+            >
               <div className="relative overflow-hidden rounded-xl">
                 <img
                   src={`${API_URL}${post.image}`}
@@ -62,7 +65,7 @@ export default function Blog() {
                   className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <div className="p-6 flex flex-col space-y-2">
+              <div className="p-6 flex flex-col gap-3 items-start justify-between ">
                 <span className="text-primary text-sm font-medium">
                   {formatDate(post.publishedAt)}
                 </span>
