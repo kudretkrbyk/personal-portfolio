@@ -75,6 +75,7 @@ export default function BlogDetail() {
 
         {/* Görsel + Başlık */}
         <img
+          loading="lazy"
           src={`${API_URL}${blog.image}`}
           alt={blog.title}
           className="rounded-lg mb-6 w-full h-64 object-cover"

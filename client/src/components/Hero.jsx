@@ -2,20 +2,22 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center bg-dark p-8 w-full"
+      className="min-h-80 h-screen flex items-center bg-dark p-8 w-full"
     >
       <div className="container flex w-full">
         <div className="grid md:grid-cols-2 gap-8 items-center w-full ">
           {" "}
           <div className="hidden md:flex md:justify-center md:items-center">
             <img
-              className="w-[400px] h-full object-cover object-center animate-border-morph"
+              loading="lazy"
+              className="w-[400px] h-[400px] object-cover object-center animate-border-morph"
               src="/assets/11.webp"
               alt="kudret-krbyk"
+              fetchPriority="high"
             />
           </div>
           <div className="flex flex-col items-center md:items-start justify-center space-y-6 xl:text-nowrap">
-            <h1 className="text-4xl md:text-6xl font-bold">Merhaba, Ben </h1>
+            <h1 className="text-4xl md:text-6xl font-bold ">Merhaba, Ben </h1>
             <p className="heading-gradient text-6xl  py-2">Kudret Kırbıyık</p>
             <p className="text-xl md:text-2xl text-body-color">
               Frontend Developer

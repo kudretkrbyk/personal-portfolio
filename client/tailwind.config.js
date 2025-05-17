@@ -2,7 +2,7 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}", // Tüm component ve sayfalar için
   ],
   theme: {
     extend: {
@@ -18,26 +18,9 @@ export default {
         montserrat: ["Montserrat", "sans-serif"],
       },
       boxShadow: {
-        'card': '10px 10px 19px #1c1e22, -10px -10px 19px #262a2e',
+        card: "10px 10px 19px #1c1e22, -10px -10px 19px #262a2e",
       },
     },
   },
   plugins: [],
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      './src/**/*.{js,jsx,ts,tsx}',
-      './public/index.html',
-    ],
-    options: {
-      safelist: [],
-      blocklist: [],
-      keyframes: true,
-      fontFace: true,
-    },
-  },
-}
+};

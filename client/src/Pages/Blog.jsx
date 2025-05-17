@@ -60,6 +60,7 @@ export default function Blog() {
             >
               <div className="relative overflow-hidden rounded-xl">
                 <img
+                  loading="lazy"
                   src={`${API_URL}${post.image}`}
                   alt={post.title}
                   className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"

@@ -29,6 +29,7 @@ export default function Navbar() {
             className="text-2xl font-bold heading-gradient"
           >
             <img
+              loading="lazy"
               className="w-60 h-16 object-cover object-center "
               src="/kudretkrbyk-logo.svg"
               alt="kudret-krbyk-logo"
