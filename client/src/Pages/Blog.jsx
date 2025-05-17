@@ -12,7 +12,11 @@ const formatDate = (dateStr) =>
 
 export default function Blog() {
   const { data: blogs = [], isLoading, isError } = useGetAllBlogsQuery();
-
+  const stripHTML = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  };
   if (isLoading) {
     return (
       <div className="min-h-screen bg-dark text-white flex justify-center items-center">
@@ -65,9 +69,10 @@ export default function Blog() {
                 <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-body-color line-clamp-3">
-                  {post.content?.slice(0, 120)}...
+                <p className="text-body-color">
+                  {stripHTML(post.content).slice(0, 150)}...
                 </p>
+
                 <Link
                   to={`/blog/${post.slug}`}
                   className="inline-flex items-center text-primary hover:text-white transition-colors"

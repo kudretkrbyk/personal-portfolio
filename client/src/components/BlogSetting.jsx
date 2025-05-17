@@ -19,6 +19,7 @@ export default function BlogSetting() {
     slug: "",
     content: "",
     image: null,
+    imageUrl: "", // 👈 eski görsel için
   });
 
   const [editMode, setEditMode] = useState(false);
@@ -75,7 +76,7 @@ export default function BlogSetting() {
       title: blog.title,
       slug: blog.slug,
       content: blog.content,
-      image: null, // dosya değil
+      imageUrl: blog.image,
     });
   };
 

@@ -16,7 +16,7 @@ router.get("/", getAll).post("/", verifyToken, upload.single("image"), addData);
 router
   .get("/slug/:slug", getBySlug)
   .get("/:id", verifyToken, getById)
-  .put("/:id", verifyToken, updateById)
+  .put("/:id", verifyToken, upload.single("image"), updateById)
   .delete("/:id", verifyToken, deleteById);
 
 module.exports = { blogRoutes: router };

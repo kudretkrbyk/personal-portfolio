@@ -21,12 +21,10 @@ export default function Home() {
       </Helmet>
 
       <Hero />
-      <AnimatedSection></AnimatedSection>
-      <AnimatedSection></AnimatedSection>
+
       <AnimatedSection>
         <Resume />
       </AnimatedSection>
-      <AnimatedSection></AnimatedSection>
     </>
   );
 }

@@ -3,7 +3,7 @@ import data from "./Data/datas";
 export default function Resume() {
   const { experiences, education, skills } = data;
   return (
-    <section id="resume" className="section bg-dark">
+    <section id="resume" className="section bg-dark min-h-screen">
       <div className="container">
         <div className="flex flex-col items-center pb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white pb-4">
