@@ -10,7 +10,7 @@ export default function Hero() {
           <div className="hidden md:flex md:justify-center md:items-center">
             <img
               className="w-[400px] h-full object-cover object-center animate-border-morph"
-              src="/assets/kudret_kırbıyık.png"
+              src="/assets/11.webp"
               alt="kudret-krbyk"
             />
           </div>

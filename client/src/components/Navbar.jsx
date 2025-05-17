@@ -20,13 +20,6 @@ export default function Navbar() {
     { title: "İletişim", href: "/iletisim" },
   ];
 
-  const handleNavClick = (e) => {
-    navigate("/");
-    e.preventDefault();
-
-    setIsOpen(false);
-  };
-
   return (
     <nav className=" w-full min-h-10  z-50 transition-all duration-300 bg-dark/95 backdrop-blur-sm shadow-lg ">
       <div className="container py-3">
@@ -36,8 +29,9 @@ export default function Navbar() {
             className="text-2xl font-bold heading-gradient"
           >
             <img
-              className="w-full object-cover object-center "
+              className="w-60 h-16 object-cover object-center "
               src="/kudretkrbyk-logo.svg"
+              alt="kudret-krbyk-logo"
             ></img>
           </Link>
 
@@ -96,14 +90,14 @@ export default function Navbar() {
         >
           <div className="border-t border-border-color pt-4">
             {menuItems.map((item) => (
-              <a
+              <Link
+                to={item.href}
                 key={item.title}
-                href={item.href}
                 className="block py-2 nav-link font-medium"
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={() => setIsOpen(false)}
               >
                 {item.title}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
